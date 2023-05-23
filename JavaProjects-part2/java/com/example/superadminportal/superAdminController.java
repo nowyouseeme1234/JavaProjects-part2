@@ -3,9 +3,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import com.example.superadminportal.databaseConnection;
 
 import java.io.*;
 import java.sql.*;
@@ -15,7 +15,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class superAdminController {
-    String filePath = "C:\\Users\\hp\\IdeaProjects\\superAdminPortal\\src\\main\\resources\\logs.txt";
+    String filePath = "C:\\Users\\hp\\IdeaProjects\\superAdminPortal2\\src\\main\\resources\\logs.txt";
     @FXML
     private Button cancelBtn,removeBtn,addBtn,adminBtn,addEmployeeBtn,addCustomerBtn,addAdminBtn;
     @FXML
@@ -34,22 +34,25 @@ public class superAdminController {
     private PasswordField passwordInput;
     @FXML
     private ChoiceBox<String> roleInput;
-    @FXML
-    private TableView<?> contentTable;
-    @FXML
-    private TableColumn<?, ?> columnID;
 
     @FXML
-    private TableColumn<?, ?> columnName;
+    private TableView<tabelData> contentTable;
 
     @FXML
-    private TableColumn<?, ?> columnPassword;
+    private TableColumn<tabelData, Integer> columnID;
 
     @FXML
-    private TableColumn<?, ?> columnRole;
+    private TableColumn<tabelData, String> columnName;
 
     @FXML
-    private TableColumn<?, ?> columnUsername;
+    private TableColumn<tabelData, String> columnPassword;
+
+    @FXML
+    private TableColumn<tabelData, String> columnRole;
+
+    @FXML
+    private TableColumn<tabelData, String> columnUsername;
+
     @FXML
     private void initialize() {
         contentTable.setVisible(false);
@@ -66,6 +69,7 @@ public class superAdminController {
             contentContainer.setVisible(true);
             removeAnchorContainer.setVisible(false);
             addAnchorContainer.setVisible(true);
+            errorMsg.setText("");
         });
         removeBtn.setOnAction(actionEvent -> {
             logsTextArea.setVisible(false);
@@ -76,12 +80,13 @@ public class superAdminController {
             contentContainer.setVisible(true);
             addAnchorContainer.setVisible(false);
             removeAnchorContainer.setVisible(true);
+            errorMsg.setText("");
         });
         addAdminBtn.setOnAction(actionEvent -> {
            addBtn.setText("Add");
            inputContainerLabel.setText("Add");
            roleInput.setValue("Admin");
-            inputContainer.setVisible(true);
+           inputContainer.setVisible(true);
         });
         addCustomerBtn.setOnAction(actionEvent -> {
             addBtn.setText("Add");
@@ -147,9 +152,6 @@ public class superAdminController {
                     preparedStatement.setString(3, rowUsernameToDelete);
 
                     //=============================second table row deletion
-//                    String selectAll = "select * from Account";
-//                    PreparedStatement selectPass = connection.prepareStatement(selectAll);
-
                     int rowsAffected = preparedStatement.executeUpdate();
 
                     if (rowsAffected > 0) {
@@ -162,7 +164,6 @@ public class superAdminController {
                     }
 
                     //database connection and prepared statements end
-
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
@@ -183,9 +184,7 @@ public class superAdminController {
                     //=============================database connection starts
 
                     try (Connection connection = databaseConnection.getConnection()) {
-//                        String sql = "INSERT INTO User (ID, Name) VALUES (?,?)";
                         String sql = "INSERT INTO User (Name) VALUES (?)";
-//                        String sql2 = "INSERT INTO Account (Username, Password, Foreign_ID, Role) VALUES (?,?,?,?)";
                         String sql2 = "INSERT INTO Account (Username, Password, Role) VALUES (?,?,?)";
 
                         PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -202,14 +201,12 @@ public class superAdminController {
                         }
                         //=======================================first table
 
-//                        preparedStatement.setInt(1, randomId);
                         preparedStatement.setString(1, Name);
 
                         //=======================================second table
 
                         preparedStatement2.setString(1, Username);
                         preparedStatement2.setString(2, Password);
-//                        preparedStatement2.setInt(3, randomId);
                         preparedStatement2.setString(3, Role);
 
                         int rowsAffected1 = preparedStatement.executeUpdate();
@@ -218,6 +215,7 @@ public class superAdminController {
                         if (rowsAffected1 > 0 && rowsAffected2 > 0) {
                             System.out.println("Data Insertion successfully.");
                         } else {
+                            errorMsg.setText("something went wrong, try again");
                             System.out.println("No rows were affected. The Insertion may have failed.");
                         }
 
@@ -227,7 +225,9 @@ public class superAdminController {
                     e.printStackTrace();
                 }
             }
-
+            else {
+                errorMsg.setText("Please Insert all the inputs");
+            }
             //clear the input fields
 
             userNameInput.setText("");
@@ -238,14 +238,14 @@ public class superAdminController {
             userNameInput.setText("");
             passwordInput.setText("");
             nameInput.setText("");
+            errorMsg.setText("");
         });
         showTable.setOnAction(actionEvent -> {
             logsTextArea.setVisible(false);
             contentTable.setVisible(true);
             contentContainer.setVisible(false);
-            Connection connection = null;
             try {
-                connection = databaseConnection.getConnection();
+                Connection connection  = databaseConnection.getConnection();
                 String query = "select ID,Name,Username,Password,Role from User as t2 join Account as t1 where t1.Foreign_ID = t2.ID";
                 Statement statement = connection.createStatement();
                 ResultSet resultSet = statement.executeQuery(query);
@@ -261,13 +261,16 @@ public class superAdminController {
                     rowData.setColumn5(resultSet.getString("Role"));
                     data.add(rowData);
                 }
-                TableView<?> tableView = contentTable;
-//                tableView.setItems(data);
+                columnID.setCellValueFactory(new PropertyValueFactory<>("column1"));
+                columnName.setCellValueFactory(new PropertyValueFactory<>("column2"));
+                columnUsername.setCellValueFactory(new PropertyValueFactory<>("column3"));
+                columnPassword.setCellValueFactory(new PropertyValueFactory<>("column4"));
+                columnRole.setCellValueFactory(new PropertyValueFactory<>("column5"));
+
+                contentTable.setItems(data);
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
-
-
         });
         backBtn.setOnAction(actionEvent -> {
             try {
@@ -289,42 +292,57 @@ public class superAdminController {
         });
         logsBtn.setOnAction(actionEvent -> {
             logsTextArea.setVisible(true);
+            logsTextArea.setText("");
             File read = new File(filePath);
             try {
                 Scanner input = new Scanner(read);
-                while (input.hasNext()){
-                    System.out.println(input);
+                while (input.hasNext()) {
+                    String line = input.nextLine();
+                    if (!logsTextArea.getText().equals(line)){
+                        logsTextArea.appendText(line + "\n" + "\n");
+                    }
                 }
+                input.close(); // Remember to close the Scanner
             } catch (FileNotFoundException e) {
                 throw new RuntimeException(e);
             }
+
         });
     }
-    public class tabelData {
-       private int column1;
-       private String column2,column3,column4,column5;
+public static class tabelData {
+    private int column1;
+    private String column2, column3, column4, column5;
 
-       private int setColumn1 (int id) {
-           this.column1 = id;
-           return  column1;
-        }
-        private String setColumn2 (String name) {
-            this.column2 = name;
-            return  column2;
-        }
-        private String setColumn3 (String username) {
-            this.column3 = username;
-            return  column3;
-        }
-        private String setColumn4 (String password) {
-            this.column4 = password;
-            return  column4;
-        }
-        private String setColumn5 (String role) {
-            this.column5 = role;
-            return  column5;
-        }
+    public int getColumn1() {
+        return column1;
+    }
+    public String getColumn2() {
+        return column2;
+    }
+    public String getColumn3() {
+        return column3;
+    }
+    public String getColumn4() {
+        return column4;
+    }
+    public String getColumn5() {
+        return column5;
     }
 
-
+    public void setColumn1(int id) {
+        this.column1 = id;
+    }
+    public void setColumn2(String name) {
+        this.column2 = name;
+    }
+    public void setColumn3(String username) {
+        this.column3 = username;
+    }
+    public void setColumn4(String password) {
+        this.column4 = password;
+    }
+    public void setColumn5(String role) {
+        this.column5 = role;
+    }
+}
 }

@@ -30,7 +30,7 @@ public class loginController {
     private Button cancelBtn,loginBtn,contactBtn,aboutBtn,serviceBtn,loginHomeBtn,signUpHomeBtn;
     @FXML
     private void initialize() {
-        String filePath = "C:\\Users\\hp\\IdeaProjects\\superAdminPortal\\src\\main\\resources\\logs.txt";
+        String filePath = "C:\\Users\\hp\\IdeaProjects\\superAdminPortal2\\src\\main\\resources\\logs.txt";
         File logs = new File(filePath);
         try {
             if (logs.createNewFile()){
