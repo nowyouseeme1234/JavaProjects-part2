@@ -117,7 +117,7 @@ public class superAdminController {
             System.out.println(btnText);
             if(btnText.equals("Delete") && !nameInput.getText().isEmpty() && !userNameInput.getText().isEmpty() && !passwordInput.getText().isEmpty()){
                 errorMsg.setText("");
-                passwordLbl.setText("Password");
+                passwordLbl.setText("Super Admin Password");
                 String Username = userNameInput.getText();
                 String Role = roleInput.getValue();
                 String Name = nameInput.getText();
@@ -214,6 +214,8 @@ public class superAdminController {
 
                         if (rowsAffected1 > 0 && rowsAffected2 > 0) {
                             System.out.println("Data Insertion successfully.");
+                            errorMsg.setText("Data inserted succesfully");
+                            errorMsg.setStyle("-fx-text-fill:white");
                         } else {
                             errorMsg.setText("something went wrong, try again");
                             System.out.println("No rows were affected. The Insertion may have failed.");

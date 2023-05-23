@@ -1,5 +1,6 @@
-package emsgroup.ems;
+package com.example.superadminportal;
 
+import com.example.superadminportal.superAdminPortal;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -12,6 +13,12 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
 import java.util.ResourceBundle;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Random;
 
 public class employeeController implements Initializable, EventHandler<ActionEvent> {
     static String username;
@@ -61,10 +68,19 @@ public class employeeController implements Initializable, EventHandler<ActionEve
     @FXML
     private Label zengLbl;
 
-    static final String DB_DRIVER = "com.mysql.cj.jdbc.Driver";
-    static final String DB_URL = "jdbc:mysql://localhost/ems";
-    static final String DB_USER = "root";
-    static final String DB_PASS = "";
+//    static final String DB_DRIVER = "com.mysql.cj.jdbc.Driver";
+//    static final String DB_URL = "jdbc:mysql://localhost/ems";
+//    static final String DB_USER = "root";
+//    static final String DB_PASS = "";
+Connection con;
+
+    {
+        try {
+            con = databaseConnection.getConnection();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -81,14 +97,16 @@ public class employeeController implements Initializable, EventHandler<ActionEve
     }
     @Override
     public void handle(ActionEvent actionEvent) {
-        try {
-            Class.forName(DB_DRIVER);
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
+//        try {
+//            Class.forName(DB_DRIVER);
+//        } catch (ClassNotFoundException e) {
+//            throw new RuntimeException(e);
+//        }
+
+
         if(actionEvent.getSource().equals(logoutBtn)){
             try {
-                App.sceneFactory("InitialLogin");
+                superAdminPortal.sceneFactory("Login");
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -104,7 +122,8 @@ public class employeeController implements Initializable, EventHandler<ActionEve
                 String sql="select Entry_date,Age from employee_info where Username='"+username+"'";
                 String sql2= "select Name from `user` AS t2 join `account` as t1 where t1.Foreign_ID = t2.ID and t1.Username='"+username+"'";
 
-                Connection con= DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
+//                Connection con= DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
+
                 Statement sethi = con.createStatement();
                 ResultSet set_hi = sethi.executeQuery(sql2);
                 set_hi.next();
@@ -127,7 +146,7 @@ public class employeeController implements Initializable, EventHandler<ActionEve
 
             try {
                 String sql="select Salary from employee_info where Username='"+username+"'";
-                Connection con = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
+//                Connection con = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
                 Statement stm= con.createStatement();
                 ResultSet res = stm.executeQuery(sql);
                 res.next();
@@ -142,7 +161,7 @@ public class employeeController implements Initializable, EventHandler<ActionEve
         if(actionEvent.getSource().equals(revewBtn)){
             try {
                 String sql="select Review from employee_info where Username='"+username+"'";
-                Connection con = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
+//                Connection con = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
                 Statement stm= con.createStatement();
                 ResultSet res = stm.executeQuery(sql);
                 res.next();
@@ -156,7 +175,7 @@ public class employeeController implements Initializable, EventHandler<ActionEve
         if(actionEvent.getSource().equals(attendanceBtn)){
             try {
                 String sql="select Attendance from employee_info where Username='"+username+"'";
-                Connection con = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
+//                Connection con = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
                 Statement stm= con.createStatement();
                 ResultSet res = stm.executeQuery(sql);
                 res.next();
@@ -178,7 +197,7 @@ public class employeeController implements Initializable, EventHandler<ActionEve
         if(actionEvent.getSource().equals(shitBtn)){
             try {
                 String sql="select Shift from employee_info where Username='"+username+"'";
-                Connection con = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
+//                Connection con = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
                 Statement stm= con.createStatement();
                 ResultSet res = stm.executeQuery(sql);
                 res.next();
@@ -199,7 +218,7 @@ public class employeeController implements Initializable, EventHandler<ActionEve
         if(actionEvent.getSource().equals(departmentBtn)){
             try {
                 String sql="select Department from employee_info where Username='"+username+"'";
-                Connection con = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
+//                Connection con = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
                 Statement stm= con.createStatement();
                 ResultSet res = stm.executeQuery(sql);
                 res.next();

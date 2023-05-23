@@ -5,7 +5,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="root" stylesheets="@employestyle.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="emsgroup.ems.FireEmployeeController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="root" stylesheets="@employestyle.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.superadminportal.FireEmployeeController">
    <children>
       <Label layoutX="167.0" layoutY="78.0" prefHeight="33.0" prefWidth="292.0" styleClass="hiLbl" text="Employee Username" />
       <TextField fx:id="empUsernameTf" layoutX="186.0" layoutY="130.0" prefHeight="40.0" prefWidth="253.0" promptText="Enter Employee Username to fire them" />

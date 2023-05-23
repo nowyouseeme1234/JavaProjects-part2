@@ -19,7 +19,6 @@ public class superAdminPortal extends Application {
         stage.setTitle("Fx Employee Management System");
         stage.setScene(scene);
         stage.show();
-
     }
     public static void sceneFactory(String fxml) throws IOException{
         scene.setRoot(loadFXML(fxml));

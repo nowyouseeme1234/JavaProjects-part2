@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="547.0" prefWidth="654.0" stylesheets="@employestyle.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="emsgroup.ems.AdminController">
+<AnchorPane prefHeight="547.0" prefWidth="654.0" stylesheets="@employestyle.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.superadminportal.AdminController">
    <children>
       <Text fx:id="description" layoutX="232.0" layoutY="194.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="descriptionTxt" text="Hello and welcome Administrator. You have admin level clearance which means it is your job to manage employees so that an unhindered work flow is attained. Do your best everyday!" wrappingWidth="276.578125" />
       <Label fx:id="zengLbl" layoutX="247.0" layoutY="60.0" prefHeight="33.0" prefWidth="86.0" styleClass="zengLbl" text="Zeng" />

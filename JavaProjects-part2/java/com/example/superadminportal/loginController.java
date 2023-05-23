@@ -105,14 +105,15 @@ public class loginController {
                             superAdminPortal.sceneFactory("superAdmin-view");
                         }
                         else if(Role.equals("Employee")){
-                            superAdminPortal.sceneFactory("employe");
+                            employeeController.setUserName(Username);
+                            superAdminPortal.sceneFactory("employefxml");
                         }
                         else if(Role.equals("Admin")){
                             superAdminPortal.sceneFactory("Admin");
                         }
-                        else if(Role.equals("Customer")){
-                            superAdminPortal.sceneFactory("Customer");
-                        }
+//                        else if(Role.equals("Customer")){
+//                            superAdminPortal.sceneFactory("Customer");
+//                        }
 
                         //==================================file writer
 

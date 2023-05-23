@@ -1,5 +1,6 @@
-package emsgroup.ems;
+package com.example.superadminportal;
 
+import com.example.superadminportal.superAdminPortal;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -25,21 +26,21 @@ public class AdminController implements Initializable, EventHandler<ActionEvent>
     public void handle(ActionEvent actionEvent) {
         if (actionEvent.getSource().equals(createBtn)){
             try {
-                App.sceneFactory("createEmployee");
+                superAdminPortal.sceneFactory("createEmployee");
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
         }
         if(actionEvent.getSource().equals(deleteBtn)){
             try {
-                App.sceneFactory("fireEmployee");
+                superAdminPortal.sceneFactory("fireEmployee");
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
         }
         if (actionEvent.getSource().equals(backBtn)){
             try {
-                App.sceneFactory("InitialLogin");
+                superAdminPortal.sceneFactory("Login");
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
