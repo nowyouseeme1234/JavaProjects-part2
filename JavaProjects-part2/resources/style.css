@@ -1,0 +1,23 @@
+.vbox1{
+   -fx-background-color: #5f6082;
+}
+.vbox2{
+   -fx-background-color: #3d557a;
+}
+.buttons{
+ -fx-background-color:#ab644d;
+ -fx-font-size:14px;
+}
+.loginBtn{
+-fx-background-color:#003D82;
+}
+.navBtn{
+-fx-background-color:#212A3E;
+}
+
+.addInputBtn{
+-fx-background-color:#1b754a;
+}
+.cancelInputBtn{
+-fx-background-color:#912737;
+}
