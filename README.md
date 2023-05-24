@@ -1,4 +1,4 @@
-# JavaProjects-part2
+# Java Employee Managment System
 This is the master repo for java assignment
 # Prerequisities 
 - java
