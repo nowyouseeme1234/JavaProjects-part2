@@ -60,6 +60,10 @@ public class superAdminController {
         contentContainer.setVisible(false);
         inputContainer.setVisible(false);
         logsTextArea.setVisible(false);
+        messageBtn.setVisible(false);
+        serviceBtn.setVisible(false);
+        notifyBtn.setVisible(false);
+        reportBtn.setVisible(false);
         adminBtn.setOnAction(actionEvent -> {
             logsTextArea.setVisible(false);
             contentTable.setVisible(false);
@@ -129,11 +133,13 @@ public class superAdminController {
 
                     //===========================prepared statments
 
-                    PreparedStatement preparedStatement = connection.prepareStatement(deleteSql2);
-
                     String rowUsernameToDelete = Username;
                     String rowRoleToDelete = Role;
                     String nameToBeDeleted = Name;
+                        if(rowRoleToDelete.equals("Employee")){
+                            deleteSql2 = "DELETE t1,t2 ,t3 FROM Account AS t1 JOIN User AS t2 ON t1.Foreign_ID = t2.ID JOIN employee_info AS t3 on t3.ID = t2.ID WHERE t2.Name = ? AND t1.Role = ? AND t1.Username = ?";
+                        }
+                    PreparedStatement preparedStatement = connection.prepareStatement(deleteSql2);
 
                     String superAdminPass = "select Password from Account where Role = 'Super Admin'";
                     PreparedStatement selectPass = connection.prepareStatement(superAdminPass);
@@ -155,6 +161,8 @@ public class superAdminController {
                     int rowsAffected = preparedStatement.executeUpdate();
 
                     if (rowsAffected > 0) {
+                        superAdminPortal.setDelete_usernameName(rowUsernameToDelete,rowRoleToDelete);
+                        superAdminPortal.getDelete();
                         errorMsg.setText("User deleted successfully");
                         errorMsg.setStyle("-fx-text-fill:white");
                         System.out.println("Row deleted successfully.");
@@ -166,6 +174,8 @@ public class superAdminController {
                     //database connection and prepared statements end
                 } catch (SQLException e) {
                     e.printStackTrace();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
                 }
             }
             else if(btnText.equals("Add") && !nameInput.getText().isEmpty() && !userNameInput.getText().isEmpty() && !passwordInput.getText().isEmpty()){
@@ -278,14 +288,15 @@ public class superAdminController {
             try {
                 superAdminPortal.sceneFactory("Login");
                 //==================================file writer
-
-                LocalDate currentDate = LocalDate.now();
-                LocalTime currentTime = LocalTime.now();
-                String content = ("Super Admin " + " has logged-Out in " + currentDate + " at "+currentTime.getHour()+ ":"+currentTime.getMinute()+":"+currentTime.getSecond());
-                FileWriter writer = new FileWriter(filePath,true);
-                PrintWriter out = new PrintWriter(writer);
-                out.println(content);
-                out.close();
+//                String U_name = superAdminPortal.U_name;
+//                LocalDate currentDate = LocalDate.now();
+//                LocalTime currentTime = LocalTime.now();
+//                String content = ("Super Admin "+ U_name + " has logged-Out in " + currentDate + " at "+currentTime.getHour()+ ":"+currentTime.getMinute()+":"+currentTime.getSecond());
+//                FileWriter writer = new FileWriter(filePath,true);
+//                PrintWriter out = new PrintWriter(writer);
+//                out.println(content);
+//                out.close();
+                superAdminPortal.getLogOut();
 
                 //==================================file writer ends
             } catch (IOException e) {

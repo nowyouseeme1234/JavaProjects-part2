@@ -106,13 +106,14 @@ Connection con;
 
         if(actionEvent.getSource().equals(logoutBtn)){
             try {
+                superAdminPortal.getLogOut();
                 superAdminPortal.sceneFactory("Login");
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
         }
         if(actionEvent.getSource().equals(backBtn)){
-            descriptionTxt.setText("Welcome to the employee management portal. On behalf of zeng delivery company LTD we thank you for your service. Our company is working on  building a  condusive working enviroment,in this process we would like to invite you to participate and do your best !!!");
+            descriptionTxt.setText("Welcome to the employee management portal. On behalf of Fx delivery company LTD we thank you for your service. Our company is working on  building a  condusive working enviroment,in this process we would like to invite you to participate and do your best !!!");
 
         }
 

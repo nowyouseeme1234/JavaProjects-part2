@@ -111,23 +111,24 @@ public class loginController {
                         else if(Role.equals("Admin")){
                             superAdminPortal.sceneFactory("Admin");
                         }
-//                        else if(Role.equals("Customer")){
-//                            superAdminPortal.sceneFactory("Customer");
-//                        }
+                        else if(Role.equals("Customer")){
+                            superAdminPortal.sceneFactory("customer");
+                        }
 
                         //==================================file writer
 
-                        LocalDate currentDate = LocalDate.now();
-                        LocalTime currentTime = LocalTime.now();
-                        String content = (Role + " " +Username + " has logged-in in " + currentDate + " at "+currentTime.getHour()+ ":"+currentTime.getMinute()+":"+currentTime.getSecond());
-                        FileWriter writer = new FileWriter(filePath,true);
-                        PrintWriter out = new PrintWriter(writer);
-                        out.println(content);
-                        out.close();
-
+//                        LocalDate currentDate = LocalDate.now();
+//                        LocalTime currentTime = LocalTime.now();
+//                        String content = (Role + " " +Username + " has logged-in in " + currentDate + " at "+currentTime.getHour()+ ":"+currentTime.getMinute()+":"+currentTime.getSecond());
+//                        FileWriter writer = new FileWriter(filePath,true);
+//                        PrintWriter out = new PrintWriter(writer);
+//                        out.println(content);
+//                        out.close();
+                        superAdminPortal.setUserName(Username,Role);
+                        superAdminPortal.getLogIn();
                         //====================================file writer ends
 
-                        System.out.println(content);
+//                        System.out.println();
                         errorMsg.setText("");
                     } else {
                         System.out.println("This user is not registered");

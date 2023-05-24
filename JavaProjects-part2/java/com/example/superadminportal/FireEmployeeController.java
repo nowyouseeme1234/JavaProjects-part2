@@ -65,11 +65,19 @@ public class FireEmployeeController implements Initializable, EventHandler<Actio
                 PreparedStatement pstmt = con.prepareStatement(sql2);
                 pstmt.setString(1,username);
                 pstmt.execute();
+                String rol = "Employee";
+                superAdminPortal.setDelete_usernameName(username,rol);
+                superAdminPortal.getDelete();
                 System.out.println(username+" deleted successfully");
+//                superAdminPortal.setUserName();
+
 
             } catch (SQLException e) {
                 lblError.setText("Username not found in the database");
-            }}
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            }
 
         }
         if(actionEvent.getSource().equals(exitBtn)){

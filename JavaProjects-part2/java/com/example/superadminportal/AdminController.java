@@ -40,6 +40,7 @@ public class AdminController implements Initializable, EventHandler<ActionEvent>
         }
         if (actionEvent.getSource().equals(backBtn)){
             try {
+                superAdminPortal.getLogOut();
                 superAdminPortal.sceneFactory("Login");
             } catch (IOException e) {
                 throw new RuntimeException(e);

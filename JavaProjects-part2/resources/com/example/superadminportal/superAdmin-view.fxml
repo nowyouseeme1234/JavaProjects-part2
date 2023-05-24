@@ -51,27 +51,27 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button fx:id="serviceBtn" layoutX="9.0" layoutY="376.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="140.0" styleClass="buttons" text="Service Summary" textFill="WHITE">
+                        <Button fx:id="serviceBtn" layoutX="7.0" layoutY="414.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="140.0" styleClass="buttons" text="Service Summary" textFill="WHITE">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button fx:id="messageBtn" layoutX="10.0" layoutY="257.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="140.0" styleClass="buttons" text="Messages" textFill="WHITE">
+                        <Button fx:id="messageBtn" layoutX="8.0" layoutY="295.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="140.0" styleClass="buttons" text="Messages" textFill="WHITE">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button fx:id="reportBtn" layoutX="10.0" layoutY="296.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="140.0" styleClass="buttons" text="Generate Report" textFill="WHITE">
+                        <Button fx:id="reportBtn" layoutX="8.0" layoutY="334.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="140.0" styleClass="buttons" text="Generate Report" textFill="WHITE">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button fx:id="notifyBtn" layoutX="11.0" layoutY="336.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="138.0" styleClass="buttons" text="Notify" textFill="WHITE">
+                        <Button fx:id="notifyBtn" layoutX="9.0" layoutY="374.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="138.0" styleClass="buttons" text="Notify" textFill="WHITE">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button fx:id="removeBtn" layoutX="9.0" layoutY="141.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="142.0" styleClass="buttons" text="Remove" textFill="WHITE">
+                        <Button fx:id="removeBtn" layoutX="9.0" layoutY="141.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="139.0" styleClass="buttons" text="Remove" textFill="WHITE">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
@@ -81,7 +81,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button fx:id="backBtn" layoutX="8.0" layoutY="416.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="140.0" styleClass="buttons" text="Log out" textFill="WHITE">
+                        <Button fx:id="backBtn" layoutX="8.0" layoutY="256.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="140.0" styleClass="buttons" text="Log out" textFill="WHITE">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>

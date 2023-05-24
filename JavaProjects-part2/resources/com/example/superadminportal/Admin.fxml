@@ -14,7 +14,7 @@
          <children>
             <Button fx:id="createBtn" layoutX="23.0" layoutY="133.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="151.0" styleClass="vboxBtn" text="Create Employee" />
             <Button fx:id="deleteBtn" layoutX="23.0" layoutY="244.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="151.0" styleClass="vboxBtn" text="Fire Employee" />
-            <Button fx:id="backBtn" layoutX="23.0" layoutY="364.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="151.0" styleClass="vboxBtn" text="Back" />
+            <Button fx:id="backBtn" layoutX="23.0" layoutY="364.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="151.0" styleClass="vboxBtn" text="Log out" />
          </children>
       </AnchorPane>
    </children>
