@@ -1,5 +1,5 @@
 # Java Employee Managment System
-This is the master repo for java assignment
+This is the main repo for java assignment
 # Prerequisities 
 - java
 - javaFx
