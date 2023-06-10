@@ -1,13 +1,284 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.superadminportal.CustomerController"
-            prefHeight="400.0" prefWidth="600.0">
+<AnchorPane prefHeight="520.0" prefWidth="774.0" styleClass="root" stylesheets="@customcss.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.superadminportal.CustomerController">
+   <children>
+      <ImageView fitHeight="54.0" fitWidth="76.0" layoutX="6.0" layoutY="14.0" styleClass="logo">
+         <image>
+            <Image url="@images/login.jpg" />
+         </image>
+      </ImageView>
+      <TextField layoutX="479.0" layoutY="30.0" promptText="Search Food..." />
+      <ScrollPane layoutX="143.0" layoutY="135.0" prefHeight="367.0" prefWidth="631.0">
+         <content>
+            <GridPane hgap="15.0" prefHeight="642.0" prefWidth="638.0" styleClass="root" vgap="10.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="399.0" minWidth="10.0" prefWidth="196.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="339.0" minWidth="10.0" prefWidth="196.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="339.0" minWidth="10.0" prefWidth="196.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="216.0" minHeight="10.0" prefHeight="214.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="215.0" minHeight="0.0" prefHeight="214.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="216.0" minHeight="10.0" prefHeight="214.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <ImageView fitHeight="127.0" fitWidth="199.0" GridPane.columnIndex="1" GridPane.valignment="TOP">
+                     <image>
+                        <Image url="@images/food/burger2.jpg" />
+                     </image>
+                  </ImageView>
+                  <Button mnemonicParsing="false" prefHeight="38.0" prefWidth="317.0" styleClass="orderNow" text="Order Now" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+                     <font>
+                        <Font name="Nyala" size="20.0" />
+                     </font>
+                  </Button>
+                  <Label alignment="CENTER" contentDisplay="CENTER" mouseTransparent="true" prefHeight="25.0" prefWidth="290.0" styleClass="weeklyReview" text="Special Barbacue" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+                     <GridPane.margin>
+                        <Insets bottom="60.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font name="Nyala" size="16.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="122.0" fitWidth="200.0" GridPane.valignment="TOP">
+                     <image>
+                        <Image url="@images/food/barbecue.jpg" />
+                     </image>
+                  </ImageView>
+                  <Label styleClass="price" text="399 ETB" textFill="#e4eb17" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
+                     <font>
+                        <Font name="Nyala" size="21.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" prefHeight="25.0" prefWidth="292.0" styleClass="weeklyReview" text="Weekly review: stars" textFill="#191a1b" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+                     <GridPane.margin>
+                        <Insets bottom="35.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font name="Nyala" size="13.0" />
+                     </font>
+                  </Label>
+                  <Button mnemonicParsing="false" prefHeight="38.0" prefWidth="317.0" styleClass="orderNow" text="Order Now" GridPane.columnIndex="1" GridPane.valignment="BOTTOM">
+                     <font>
+                        <Font name="Nyala" size="20.0" />
+                     </font>
+                  </Button>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="25.0" prefWidth="326.0" styleClass="weeklyReview" text="Beef Burger" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+                     <font>
+                        <Font name="Nyala" size="16.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets bottom="60.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label alignment="CENTER" prefHeight="25.0" prefWidth="327.0" styleClass="weeklyReview" text="Weekly review: stars" textFill="#191a1b" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+                     <font>
+                        <Font name="Nyala" size="13.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets bottom="35.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label styleClass="price" text="399 ETB" textFill="#e4eb17" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
+                     <font>
+                        <Font name="Nyala" size="21.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="25.0" prefWidth="206.0" styleClass="weeklyReview" text="Strawberry Milkshake" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+                     <GridPane.margin>
+                        <Insets bottom="60.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font name="Nyala" size="16.0" />
+                     </font>
+                  </Label>
+                  <Button mnemonicParsing="false" prefHeight="38.0" prefWidth="317.0" styleClass="orderNow" text="Order Now" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+                     <font>
+                        <Font name="Nyala" size="18.0" />
+                     </font>
+                  </Button>
+                  <ImageView fitHeight="137.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.valignment="BASELINE" />
+                  <ImageView fitHeight="127.0" fitWidth="220.0" GridPane.columnIndex="2" GridPane.valignment="TOP">
+                     <image>
+                        <Image url="@images/drinks/alexander-mils.jpg" />
+                     </image>
+                  </ImageView>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="25.0" prefWidth="206.0" styleClass="weeklyReview" text="     Weekly review: star" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
+                     <GridPane.margin>
+                        <Insets bottom="35.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font name="Nyala" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label prefHeight="30.0" prefWidth="68.0" styleClass="price" text="159 ETB" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                  </Label>
+                  <ImageView fitHeight="111.0" fitWidth="169.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="25.0" prefWidth="209.0" styleClass="weeklyReview" text="  Rice with salad" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                     <GridPane.margin>
+                        <Insets bottom="60.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label alignment="CENTER" prefHeight="25.0" prefWidth="203.0" styleClass="weeklyReview" text="  Weekly review:star" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                     <GridPane.margin>
+                        <Insets bottom="35.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Button mnemonicParsing="false" prefHeight="38.0" prefWidth="317.0" styleClass="orderNow" text="Order Now" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
+                  <ImageView fitHeight="122.0" fitWidth="200.0" styleClass="orderNow" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                     <image>
+                        <Image url="@images/food/fried-rice.jpg" />
+                     </image>
+                  </ImageView>
+                  <Label prefHeight="25.0" prefWidth="71.0" styleClass="price" text="249 ETB" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                     <font>
+                        <Font name="Nyala" size="12.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+                  <ImageView fitHeight="127.0" fitWidth="199.0" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                     <image>
+                        <Image url="@images/food/image6.jpg" />
+                     </image>
+                  </ImageView>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="25.0" prefWidth="206.0" styleClass="weeklyReview" text="Pizza" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                     <GridPane.margin>
+                        <Insets bottom="60.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label alignment="CENTER" prefHeight="25.0" prefWidth="206.0" styleClass="weeklyReview" text="Weekly review:star" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                     <GridPane.margin>
+                        <Insets bottom="35.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label prefHeight="25.0" prefWidth="69.0" styleClass="price" text="300 ETB" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                  </Label>
+                  <Button mnemonicParsing="false" prefHeight="38.0" prefWidth="317.0" styleClass="orderNow" text="Order Now" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
+                  <ImageView fitHeight="150.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                     <image>
+                        <Image url="@images/food/image8.jpg" />
+                     </image></ImageView>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="25.0" prefWidth="217.0" styleClass="weeklyReview" text="French Fries" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                     <GridPane.margin>
+                        <Insets bottom="60.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label alignment="CENTER" prefHeight="25.0" prefWidth="217.0" styleClass="weeklyReview" text="Weekly review:atart" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                     <GridPane.margin>
+                        <Insets bottom="35.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Button mnemonicParsing="false" prefHeight="38.0" prefWidth="317.0" styleClass="orderNow" text="Order Now" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM" />
+                  <Label prefHeight="30.0" prefWidth="73.0" styleClass="price" text="50 ETB " GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="25.0" prefWidth="209.0" styleClass="weeklyReview" text="Doro Wot" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+                     <GridPane.margin>
+                        <Insets bottom="60.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="25.0" prefWidth="209.0" styleClass="weeklyReview" text="Weekly review: stars" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+                     <GridPane.margin>
+                        <Insets bottom="35.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <ImageView fitHeight="122.0" fitWidth="200.0" GridPane.rowIndex="2" GridPane.valignment="TOP">
+                     <image>
+                        <Image url="@images/food/doro%20wot.png" />
+                     </image>
+                  </ImageView>
+                  <Button alignment="CENTER" mnemonicParsing="false" prefHeight="38.0" prefWidth="317.0" styleClass="orderNow" text="Order Now" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />
+                  <ImageView fitHeight="134.0" fitWidth="219.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="TOP">
+                     <image>
+                        <Image url="@images/food/image7.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="149.0" fitWidth="261.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.valignment="TOP">
+                     <image>
+                        <Image url="@images/drinks/rum.jpg" />
+                     </image>
+                  </ImageView>
+                  <Label alignment="CENTER" prefHeight="25.0" prefWidth="206.0" styleClass="weeklyReview" text="Tuna Vegies" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+                     <GridPane.margin>
+                        <Insets bottom="60.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label alignment="CENTER" prefHeight="25.0" prefWidth="206.0" styleClass="weeklyReview" text="Weekly review: stars" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+                     <GridPane.margin>
+                        <Insets bottom="35.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Button mnemonicParsing="false" prefHeight="38.0" prefWidth="317.0" styleClass="orderNow" text="Order Now" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />
+                  <Label alignment="CENTER" prefHeight="25.0" prefWidth="215.0" styleClass="weeklyReview" text="Irish Rum" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+                     <GridPane.margin>
+                        <Insets bottom="60.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label alignment="CENTER" prefHeight="25.0" prefWidth="219.0" styleClass="weeklyReview" text="weely review: star" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+                     <GridPane.margin>
+                        <Insets bottom="35.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Button mnemonicParsing="false" prefHeight="38.0" prefWidth="317.0" styleClass="orderNow" text="Order Now" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />
+                  <Label styleClass="price" text="799 ETB" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="TOP" />
+                  <Label styleClass="price" text="199 ETB" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="TOP" />
+                  <Label styleClass="price" text="499 ETB" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="TOP" />
+               </children>
+               <GridPane.margin>
+                  <Insets right="50.0" />
+               </GridPane.margin>
+            </GridPane>
+         </content>
+      </ScrollPane>
+      <VBox layoutY="163.0" prefHeight="347.0" prefWidth="142.0">
+         <children>
+            <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="94.0" styleClass="vboxbutton" text="Foods">
+               <VBox.margin>
+                  <Insets bottom="30.0" left="15.0" right="30.0" top="10.0" />
+               </VBox.margin>
+            </Button>
+            <Button lineSpacing="10.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="97.0" styleClass="vboxbutton" text="Drinks">
+               <VBox.margin>
+                  <Insets bottom="30.0" left="15.0" right="30.0" />
+               </VBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="116.0" styleClass="vboxbutton" text="About">
+               <VBox.margin>
+                  <Insets bottom="30.0" left="15.0" right="30.0" />
+               </VBox.margin>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="37.0" prefWidth="96.0" styleClass="vboxbutton" text="Log in">
+               <VBox.margin>
+                  <Insets bottom="30.0" left="15.0" right="30.0" />
+               </VBox.margin>
+            </Button>
+            <Button layoutX="10.0" layoutY="85.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="97.0" styleClass="vboxbutton" text="Sign up">
+               <VBox.margin>
+                  <Insets bottom="30.0" left="15.0" right="30.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+         <padding>
+            <Insets bottom="10.0" />
+         </padding></VBox>
+      <Button layoutX="650.0" layoutY="22.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="97.0" styleClass="vboxbutton" text="Search" />
+   </children>
 </AnchorPane>
