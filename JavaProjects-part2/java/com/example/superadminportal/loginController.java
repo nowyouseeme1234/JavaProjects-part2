@@ -30,7 +30,7 @@ public class loginController {
     private Button cancelBtn,loginBtn,contactBtn,aboutBtn,serviceBtn,loginHomeBtn,signUpHomeBtn;
     @FXML
     private void initialize() {
-        String filePath = "C:\\Users\\hp\\IdeaProjects\\superAdminPortal2\\src\\main\\resources\\logs.txt";
+        String filePath = "C:\\Users\\NY\\Documents\\intellijProjects\\superadminportal\\src\\main\\resources\\logs.txt";
         File logs = new File(filePath);
         try {
             if (logs.createNewFile()){
@@ -117,13 +117,6 @@ public class loginController {
 
                         //==================================file writer
 
-//                        LocalDate currentDate = LocalDate.now();
-//                        LocalTime currentTime = LocalTime.now();
-//                        String content = (Role + " " +Username + " has logged-in in " + currentDate + " at "+currentTime.getHour()+ ":"+currentTime.getMinute()+":"+currentTime.getSecond());
-//                        FileWriter writer = new FileWriter(filePath,true);
-//                        PrintWriter out = new PrintWriter(writer);
-//                        out.println(content);
-//                        out.close();
                         superAdminPortal.setUserName(Username,Role);
                         superAdminPortal.getLogIn();
                         //====================================file writer ends
@@ -140,9 +133,7 @@ public class loginController {
                     preparedStatement.close();
                     connection.close();
 
-                } catch (SQLException e) {
-                    throw new RuntimeException(e);
-                } catch (IOException e) {
+                } catch (SQLException | IOException | ClassNotFoundException e) {
                     throw new RuntimeException(e);
                 }
                 return;
@@ -156,54 +147,23 @@ public class loginController {
                 System.out.println(Password);
                 System.out.println(Role);
 
-                try {
-                    Random random = new Random();
-                    int randomId = Math.abs(random.nextInt());
+                  //=============================database connection starts
 
-                    //=============================database connection starts
+                try  {
 
-                    try (Connection connection = databaseConnection.getConnection()) {
-                        String sql = "INSERT INTO User (ID, Name) VALUES (?,?)";
-                        String sql2 = "INSERT INTO Account (Username, Password, Foreign_ID, Role) VALUES (?,?,?,?)";
-                        PreparedStatement preparedStatement = connection.prepareStatement(sql);
-                        PreparedStatement preparedStatement2 = connection.prepareStatement(sql2);
-
-                        String selectUsername = "select Username from Account ";
-                        ResultSet resultSet = preparedStatement2.executeQuery(selectUsername);
-                        while (resultSet.next()) {
-                            String checkUsername = resultSet.getString("Username");
-                            if (checkUsername.equals(Username) ){
-                                errorMsg.setText("This Username has taken");
-                                return;
-                            }
+                    ResultSet resultSet = superAdminPortal.selectUserName();
+                    while (resultSet.next()) {
+                        String checkUsername = resultSet.getString("Username");
+                        if (checkUsername.equals(Username) ){
+                            errorMsg.setText("This username is already in use");
+                            return;
                         }
-                        //=======================================first table
-
-                        preparedStatement.setInt(1, randomId);
-                        preparedStatement.setString(2, Name);
-
-                        //=======================================second table
-
-                        preparedStatement2.setString(1, Username);
-                        preparedStatement2.setString(2, Password);
-                        preparedStatement2.setInt(3, randomId);
-                        preparedStatement2.setString(4, Role);
-
-                        int rowsAffected1 = preparedStatement.executeUpdate();
-                        int rowsAffected2 = preparedStatement2.executeUpdate();
-
-                        if (rowsAffected1 > 0 && rowsAffected2 > 0) {
-                            System.out.println("Data Insertion successfully.");
-                            errorMsg.setText("");
-                        } else {
-                            System.out.println("No rows were affected. The Insertion may have failed.");
-                            errorMsg.setText("Something went wrong");
-                        }
-
-                        //===================================database connection and prepared statements  ends
                     }
-                } catch (SQLException e) {
-                    e.printStackTrace();
+                    superAdminPortal.insertIntoUserAndAccountTable(Name, Username, Password, Role);
+
+                    //===================================database connection and prepared statements  ends
+                } catch (SQLException | IOException e) {
+                    throw new RuntimeException(e);
                 }
                 nameInp.setText("");
                 usernameInp.setText("");

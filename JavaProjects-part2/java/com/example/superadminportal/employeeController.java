@@ -77,7 +77,7 @@ Connection con;
     {
         try {
             con = databaseConnection.getConnection();
-        } catch (SQLException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }

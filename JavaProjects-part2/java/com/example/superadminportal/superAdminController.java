@@ -21,13 +21,13 @@ public class superAdminController {
     @FXML
     private BorderPane borderPane;
     @FXML
-    private AnchorPane addAnchorContainer,contentContainer,inputContainer,removeAnchorContainer;
+    private AnchorPane addAnchorContainer,contentContainer,inputContainer,removeAnchorContainer, employeeInputContainer;
     @FXML
     private Label label1,label2,inputContainerLabel,nameLbl,passwordLbl,errorMsg;
     @FXML
     private Button backBtn,logsBtn,messageBtn,notifyBtn,removeAdminBtn,removeCustomerBtn,removeEmployeeBtn,reportBtn,serviceBtn,showTable;
     @FXML
-    private TextField userNameInput,nameInput;
+    private TextField userNameInput,nameInput, ageInput, deptInput, salaryInput, shiftInput;
     @FXML
     private TextArea logsTextArea;
     @FXML
@@ -55,6 +55,7 @@ public class superAdminController {
 
     @FXML
     private void initialize() {
+        employeeInputContainer.setVisible(false);
         contentTable.setVisible(false);
         roleInput.setItems(FXCollections.observableArrayList("Admin","Employee","Customer"));
         contentContainer.setVisible(false);
@@ -65,6 +66,7 @@ public class superAdminController {
         notifyBtn.setVisible(false);
         reportBtn.setVisible(false);
         adminBtn.setOnAction(actionEvent -> {
+            employeeInputContainer.setVisible(false);
             logsTextArea.setVisible(false);
             contentTable.setVisible(false);
             inputContainerLabel.setText("Insert");
@@ -76,6 +78,7 @@ public class superAdminController {
             errorMsg.setText("");
         });
         removeBtn.setOnAction(actionEvent -> {
+            employeeInputContainer.setVisible(false);
             logsTextArea.setVisible(false);
             contentTable.setVisible(false);
             inputContainerLabel.setText("Remove");
@@ -91,41 +94,52 @@ public class superAdminController {
            inputContainerLabel.setText("Add");
            roleInput.setValue("Admin");
            inputContainer.setVisible(true);
+            employeeInputContainer.setVisible(false);
         });
         addCustomerBtn.setOnAction(actionEvent -> {
             addBtn.setText("Add");
             inputContainerLabel.setText("Add");
             roleInput.setValue("Customer");
             inputContainer.setVisible(true);
+            employeeInputContainer.setVisible(false);
         });
         addEmployeeBtn.setOnAction(actionEvent -> {
             addBtn.setText("Add");
             inputContainerLabel.setText("Add");
             roleInput.setValue("Employee");
             inputContainer.setVisible(true);
+            employeeInputContainer.setVisible(true);
         });
         removeAdminBtn.setOnAction(actionEvent -> {
+            employeeInputContainer.setVisible(false);
             roleInput.setValue("Admin");
             inputContainer.setVisible(true);
         });
         removeCustomerBtn.setOnAction(actionEvent -> {
+            employeeInputContainer.setVisible(false);
             roleInput.setValue("Customer");
             inputContainer.setVisible(true);
         });
         removeEmployeeBtn.setOnAction(actionEvent -> {
+            employeeInputContainer.setVisible(false);
             roleInput.setValue("Employee");
             inputContainer.setVisible(true);
         });
         addBtn.setOnAction(actionEvent -> {
             String btnText = addBtn.getText();
+            String Age = ageInput.getText();
+            String Salary = salaryInput.getText();
+            String Dept = deptInput.getText();
+            String Shift = shiftInput.getText();
+            String Username = userNameInput.getText();
+            String Role = roleInput.getValue();
+            String Name = nameInput.getText();
+            String Password = passwordInput.getText();
             System.out.println(btnText);
-            if(btnText.equals("Delete") && !nameInput.getText().isEmpty() && !userNameInput.getText().isEmpty() && !passwordInput.getText().isEmpty()){
+            if(btnText.equals("Delete") && !Name.isEmpty() && !Username.isEmpty() && !Password.isEmpty()){
                 errorMsg.setText("");
                 passwordLbl.setText("Super Admin Password");
-                String Username = userNameInput.getText();
-                String Role = roleInput.getValue();
-                String Name = nameInput.getText();
-                String Password = passwordInput.getText();
+
                 int id = 0;
                     //database connection starts
                 try (Connection connection = databaseConnection.getConnection()) {
@@ -174,67 +188,41 @@ public class superAdminController {
                     //database connection and prepared statements end
                 } catch (SQLException e) {
                     e.printStackTrace();
-                } catch (IOException e) {
+                } catch (IOException | ClassNotFoundException e) {
                     throw new RuntimeException(e);
                 }
             }
-            else if(btnText.equals("Add") && !nameInput.getText().isEmpty() && !userNameInput.getText().isEmpty() && !passwordInput.getText().isEmpty()){
-                String Username = userNameInput.getText();
-                String Password = passwordInput.getText();
-                String Role = roleInput.getValue();
-                String Name = nameInput.getText();
+            else if(btnText.equals("Add") && !Name.isEmpty() && !Username.isEmpty() && !Password.isEmpty()){
                 System.out.println(Username);
                 System.out.println(Password);
                 System.out.println(Role);
+                System.out.println(Age);
                 errorMsg.setText("");
-                try {
-                    Random random = new Random();
-                    int randomId = Math.abs(random.nextInt());
 
-                    //=============================database connection starts
+                //=============================database connection starts
 
-                    try (Connection connection = databaseConnection.getConnection()) {
-                        String sql = "INSERT INTO User (Name) VALUES (?)";
-                        String sql2 = "INSERT INTO Account (Username, Password, Role) VALUES (?,?,?)";
-
-                        PreparedStatement preparedStatement = connection.prepareStatement(sql);
-                        PreparedStatement preparedStatement2 = connection.prepareStatement(sql2);
-
-                        String selectUsername = "select Username from Account ";
-                        ResultSet resultSet = preparedStatement2.executeQuery(selectUsername);
-                        while (resultSet.next()) {
-                            String checkUsername = resultSet.getString("Username");
-                            if (checkUsername.equals(Username) ){
-                                errorMsg.setText("This Username has taken");
-                                return;
-                            }
-                        }
-                        //=======================================first table
-
-                        preparedStatement.setString(1, Name);
-
-                        //=======================================second table
-
-                        preparedStatement2.setString(1, Username);
-                        preparedStatement2.setString(2, Password);
-                        preparedStatement2.setString(3, Role);
-
-                        int rowsAffected1 = preparedStatement.executeUpdate();
-                        int rowsAffected2 = preparedStatement2.executeUpdate();
-
-                        if (rowsAffected1 > 0 && rowsAffected2 > 0) {
-                            System.out.println("Data Insertion successfully.");
-                            errorMsg.setText("Data inserted succesfully");
-                            errorMsg.setStyle("-fx-text-fill:white");
-                        } else {
-                            errorMsg.setText("something went wrong, try again");
-                            System.out.println("No rows were affected. The Insertion may have failed.");
+                try  {
+                    ResultSet resultSet = superAdminPortal.selectUserName();
+                    while (resultSet.next()) {
+                        String checkUsername = resultSet.getString("Username");
+                        if (checkUsername.equals(Username) ){
+                            errorMsg.setText("This username is already in use");
+                            return;
                         }
 
-                        //===================================database connection and prepared statements  ends
                     }
-                } catch (SQLException e) {
-                    e.printStackTrace();
+                        if (Role.equals("Admin") || Role.equals("Customer"))
+                            superAdminPortal.insertIntoUserAndAccountTable(Name, Username, Password, Role);
+                        else if (employeeInputContainer.isVisible() && !Age.isEmpty() && !Salary.isEmpty() && !Dept.isEmpty() && !Shift.isEmpty())
+                            superAdminPortal.createEmployeeAccount(Name, Username, Password, Age, Shift, Dept, Salary);
+                        else
+                            errorMsg.setText("Please Insert all the inputs");
+
+
+
+                    //===================================database connection and prepared statements  ends
+                } catch (SQLException | IOException e) {
+                    throw new RuntimeException(e);
                 }
             }
             else {
@@ -245,12 +233,14 @@ public class superAdminController {
             userNameInput.setText("");
             passwordInput.setText("");
             nameInput.setText("");
+            superAdminPortal.clearFields(shiftInput, deptInput, salaryInput, ageInput);
         });
         cancelBtn.setOnAction(actionEvent -> {
             userNameInput.setText("");
             passwordInput.setText("");
             nameInput.setText("");
             errorMsg.setText("");
+
         });
         showTable.setOnAction(actionEvent -> {
             logsTextArea.setVisible(false);
@@ -280,7 +270,7 @@ public class superAdminController {
                 columnRole.setCellValueFactory(new PropertyValueFactory<>("column5"));
 
                 contentTable.setItems(data);
-            } catch (SQLException e) {
+            } catch (SQLException | ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }
         });
@@ -288,14 +278,7 @@ public class superAdminController {
             try {
                 superAdminPortal.sceneFactory("Login");
                 //==================================file writer
-//                String U_name = superAdminPortal.U_name;
-//                LocalDate currentDate = LocalDate.now();
-//                LocalTime currentTime = LocalTime.now();
-//                String content = ("Super Admin "+ U_name + " has logged-Out in " + currentDate + " at "+currentTime.getHour()+ ":"+currentTime.getMinute()+":"+currentTime.getSecond());
-//                FileWriter writer = new FileWriter(filePath,true);
-//                PrintWriter out = new PrintWriter(writer);
-//                out.println(content);
-//                out.close();
+
                 superAdminPortal.getLogOut();
 
                 //==================================file writer ends
