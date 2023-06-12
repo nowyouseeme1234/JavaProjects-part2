@@ -51,14 +51,14 @@ public class superAdminPortal extends Application {
    public static LocalDate currentDate = LocalDate.now();
     public static LocalTime currentTime = LocalTime.now();
     public static void getLogOut() throws IOException {
-        String content = (R_name + " " + U_name + " has logged-Out in " + currentDate + " at "+currentTime.getHour()+ ":"+currentTime.getMinute()+":"+currentTime.getSecond());
+        String content = (R_name + " " + U_name + " has logged-Out on " + currentDate + " at "+currentTime.getHour()+ ":"+currentTime.getMinute()+":"+currentTime.getSecond());
         FileWriter writer = new FileWriter(filePath,true);
         PrintWriter out = new PrintWriter(writer);
         out.println(content);
         out.close();
     }
     public static void getLogIn() throws IOException {
-        String content = (R_name + " " + U_name + " has logged-in in " + currentDate + " at "+currentTime.getHour()+ ":"+currentTime.getMinute()+":"+currentTime.getSecond());
+        String content = (R_name + " " + U_name + " has logged-in on " + currentDate + " at "+currentTime.getHour()+ ":"+currentTime.getMinute()+":"+currentTime.getSecond());
         FileWriter writer = new FileWriter(filePath,true);
         PrintWriter out = new PrintWriter(writer);
         out.println(content);
@@ -137,6 +137,43 @@ public class superAdminPortal extends Application {
             int resultA = pstmtA.executeUpdate();
             if (resultA>0){
                 System.out.println(username+" Inserted Into Account table Successfully");
+                setUserName(username, role);
+                getLogIn();
+
+            }
+            else
+            {
+                System.out.println("failed to insert "+username+" into account table");
+            }
+
+        }
+        else {
+            System.out.println("failed to insert "+name+" into user table");
+        }
+    }
+    public static void insertIntoUserAndAccountTable(String name, String username, String password, String role, String address, String tel) throws SQLException, IOException {
+
+        String sqlU = "Insert Into user(Name) values(?)";
+        PreparedStatement pstmtU = con.prepareStatement(sqlU, Statement.RETURN_GENERATED_KEYS);
+        pstmtU.setString(1, name);
+        int resultU = pstmtU.executeUpdate();
+        if(resultU>0) {
+            System.out.println("Customer: "+name+" Inserted Into User table successfully");
+            ResultSet resSetU = pstmtU.getGeneratedKeys();
+            resSetU.next();
+            int foreignId = resSetU.getInt(1);
+            String sqlA = "Insert Into account(Username, Password, Foreign_ID, Role, Address, Tel) values(?,?,?,?,?,?)";
+            PreparedStatement pstmtA = con.prepareStatement(sqlA);
+            pstmtA.setString(1, username);
+            pstmtA.setString(2, password);
+            pstmtA.setInt(3, foreignId);
+            pstmtA.setString(4, role);
+            pstmtA.setString(5, address);
+            pstmtA.setString(6, tel);
+
+            int resultA = pstmtA.executeUpdate();
+            if (resultA>0){
+                System.out.println("Customer: "+username+" Inserted Into Account table Successfully");
                 setUserName(username, role);
                 getLogIn();
 

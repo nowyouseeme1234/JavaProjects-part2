@@ -19,11 +19,11 @@ import java.util.Random;
 
 public class loginController {
     @FXML
-    private Label Password,Username,loginTxt,name,homeTitle,errorMsg;
+    private Label Password,Username,loginTxt,name,homeTitle,errorMsg, Addres, tel;
     @FXML
     private PasswordField PasswordInp;
     @FXML
-    private TextField nameInp,usernameInp;
+    private TextField nameInp,usernameInp, addressInput, telInput;
     @FXML
     private AnchorPane loginAnchor,service,welocmeAnchor;
     @FXML
@@ -54,6 +54,11 @@ public class loginController {
             loginBtn.setText("Log In");
             loginAnchor.setVisible(true);
             errorMsg.setText("");
+            tel.setVisible(false);
+            addressInput.setVisible(false);
+            telInput.setVisible(false);
+            Addres.setVisible(false);
+
         });
         signUpHomeBtn.setOnAction(actionEvent -> {
             welocmeAnchor.setVisible(false);
@@ -64,24 +69,40 @@ public class loginController {
             loginBtn.setText("Sign Up");
             loginAnchor.setVisible(true);
             errorMsg.setText("");
+            tel.setVisible(true);
+            addressInput.setVisible(true);
+            telInput.setVisible(true);
+            Addres.setVisible(true);
         });
         serviceBtn.setOnAction(actionEvent -> {
             welocmeAnchor.setVisible(false);
             homeTitle.setText("Service");
             service.setVisible(true);
             service.setStyle("-fx-background-color: #2B4865;");
+            tel.setVisible(false);
+            addressInput.setVisible(false);
+            telInput.setVisible(false);
+            Addres.setVisible(false);
         });
         aboutBtn.setOnAction(actionEvent -> {
             welocmeAnchor.setVisible(false);
             homeTitle.setText("About");
             service.setVisible(true);
             service.setStyle("-fx-background-color: #002B5B;");
+            tel.setVisible(false);
+            addressInput.setVisible(false);
+            telInput.setVisible(false);
+            Addres.setVisible(false);
         });
         contactBtn.setOnAction(actionEvent -> {
             welocmeAnchor.setVisible(false);
             homeTitle.setText("Contact Us");
             service.setVisible(true);
             service.setStyle("-fx-background-color: #2C3333;");
+            tel.setVisible(false);
+            addressInput.setVisible(false);
+            telInput.setVisible(false);
+            Addres.setVisible(false);
         });
         loginBtn.setOnAction(actionEvent -> {
             if (loginBtn.getText().equals("Log In") && !PasswordInp.getText().isEmpty() && !usernameInp.getText().isEmpty()){
@@ -127,6 +148,7 @@ public class loginController {
                         System.out.println("This user is not registered");
                         errorMsg.setText("User is not registered");
                     }
+                    errorMsg.setText("");
                     usernameInp.setText("");
                     PasswordInp.setText("");
                     resultSet.close();
@@ -141,6 +163,8 @@ public class loginController {
             else if (loginBtn.getText().equals("Sign Up") && !nameInp.getText().isEmpty() && !PasswordInp.getText().isEmpty() && !usernameInp.getText().isEmpty()) {
                 String Username = usernameInp.getText();
                 String Password = PasswordInp.getText();
+                String Address = addressInput.getText();
+                String Tel = telInput.getText();
                 String Role = "Customer";
                 String Name = nameInp.getText();
                 System.out.println(Username);
@@ -159,20 +183,25 @@ public class loginController {
                             return;
                         }
                     }
-                    superAdminPortal.insertIntoUserAndAccountTable(Name, Username, Password, Role);
+                    superAdminPortal.insertIntoUserAndAccountTable(Name, Username, Password, Role, Address, Tel);
 
                     //===================================database connection and prepared statements  ends
                 } catch (SQLException | IOException e) {
                     throw new RuntimeException(e);
                 }
+                telInput.setText("");
+                addressInput.setText("");
                 nameInp.setText("");
                 usernameInp.setText("");
                 PasswordInp.setText("");
+                errorMsg.setText("");
                 return;
             }
             errorMsg.setText("Please Insert values");
         });
         cancelBtn.setOnAction(actionEvent -> {
+            telInput.setText("");
+            addressInput.setText("");
             usernameInp.setText("");
             PasswordInp.setText("");
             nameInp.setText("");
