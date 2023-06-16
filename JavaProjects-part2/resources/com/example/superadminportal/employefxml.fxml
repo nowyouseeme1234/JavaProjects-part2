@@ -108,5 +108,7 @@
             <String fx:value="vboxBtn" />
          </styleClass></Button>
       <Text fx:id="descriptionTxt" fill="#304331" fontSmoothingType="LCD" layoutX="186.0" layoutY="199.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="descriptionTxt" text="Welcome to the employee management portal. On behalf of zeng delivery company LTD we thank you for your service. Our company is working on  building a  condusive working enviroment,in this process we would like to invite you to participate and do your best !!!" wrappingWidth="441.4423828125" />
+      <Button fx:id="ordersBtn" layoutX="481.0" layoutY="430.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="99.0" styleClass="vboxBtn" text="Orders" textFill="#f8e7e7" />
+      <Button fx:id="takeOrderBtn" layoutX="457.0" layoutY="359.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="142.0" styleClass="vboxBtn" text="Free Status" textFill="#f8e7e7" />
    </children>
 </AnchorPane>

@@ -18,30 +18,30 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane id="borderPane" fx:id="borderPane" prefHeight="591.0" prefWidth="673.0" stylesheets="@../../../style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.superadminportal.superAdminController">
+<BorderPane id="borderPane" fx:id="borderPane" prefHeight="532.0" prefWidth="718.0" stylesheets="@../../../style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.superadminportal.superAdminController">
    <center>
-      <AnchorPane centerShape="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="551.0" prefWidth="688.0">
+      <AnchorPane centerShape="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="531.0" prefWidth="712.0">
          <children>
-            <ImageView fitHeight="560.0" fitWidth="688.0" layoutX="-2.0" layoutY="-23.0" opacity="0.5" pickOnBounds="true">
+            <ImageView fitHeight="569.0" fitWidth="822.0" layoutX="-44.0" layoutY="-23.0" opacity="0.5" pickOnBounds="true">
                <image>
                   <Image url="@images/logInBg.jpg" />
                </image>
             </ImageView>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="-2.0" layoutY="-19.0" lineSpacing="2.0" prefHeight="73.0" prefWidth="688.0" text="Super Admin Portal" textAlignment="CENTER" textFill="#000316" wrapText="true">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="-22.0" layoutY="-19.0" lineSpacing="2.0" prefHeight="73.0" prefWidth="725.0" text="Super Admin Portal" textAlignment="CENTER" textFill="#000316" wrapText="true">
                <font>
                   <Font name="Calibri" size="32.0" />
                </font>
             </Label>
-            <HBox layoutX="-4.0" layoutY="46.0" prefHeight="491.0" prefWidth="688.0">
+            <HBox layoutX="-4.0" layoutY="46.0" prefHeight="491.0" prefWidth="718.0">
                <children>
-                  <Pane prefHeight="476.0" prefWidth="156.0" styleClass="vbox1">
+                  <Pane prefHeight="506.0" prefWidth="168.0" styleClass="vbox1">
                      <children>
                         <Button fx:id="adminBtn" layoutX="9.0" layoutY="102.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="140.0" styleClass="buttons" stylesheets="@../../../style.css" text="Add" textFill="WHITE">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Label fx:id="label1" alignment="TOP_CENTER" layoutY="14.0" prefHeight="18.0" prefWidth="156.0" text="controle panel" textFill="WHITE">
+                        <Label fx:id="label1" alignment="TOP_CENTER" layoutY="14.0" prefHeight="18.0" prefWidth="156.0" text="control panel" textFill="WHITE">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -88,14 +88,14 @@
                         </Button>
                      </children>
                   </Pane>
-                  <Pane prefHeight="491.0" prefWidth="533.0" styleClass="vbox2">
+                  <Pane prefHeight="491.0" prefWidth="551.0" styleClass="vbox2">
                      <children>
                         <Label fx:id="label2" alignment="TOP_CENTER" layoutY="14.0" prefHeight="30.0" prefWidth="522.0" text="Description" textFill="WHITE">
                            <font>
                               <Font size="20.0" />
                            </font>
                         </Label>
-                        <AnchorPane fx:id="contentContainer" layoutX="18.0" layoutY="82.0" prefHeight="395.0" prefWidth="497.0">
+                        <AnchorPane fx:id="contentContainer" layoutX="18.0" layoutY="82.0" prefHeight="385.0" prefWidth="513.0">
                            <children>
                               <AnchorPane fx:id="addAnchorContainer" layoutX="7.0" layoutY="3.0">
                                  <children>
@@ -153,10 +153,10 @@
                                     </Button>
                                  </children>
                               </AnchorPane>
-                              <AnchorPane fx:id="inputContainer" layoutX="14.0" layoutY="159.0" prefHeight="224.0" prefWidth="477.0">
+                              <AnchorPane fx:id="inputContainer" layoutX="14.0" layoutY="159.0" prefHeight="201.0" prefWidth="432.0">
                                  <children>
-                                    <TextField fx:id="userNameInput" layoutX="86.0" layoutY="60.0" prefHeight="25.0" prefWidth="348.0" />
-                                    <PasswordField fx:id="passwordInput" layoutX="86.0" layoutY="101.0" prefHeight="25.0" prefWidth="347.0" />
+                                    <TextField fx:id="userNameInput" layoutX="86.0" layoutY="62.0" prefHeight="25.0" prefWidth="132.0" />
+                                    <PasswordField fx:id="passwordInput" layoutX="86.0" layoutY="101.0" prefHeight="25.0" prefWidth="132.0" />
                                     <Label layoutY="63.0" text="UserName" textFill="WHITE">
                                        <font>
                                           <Font size="14.0" />
@@ -193,12 +193,12 @@
                                           <Cursor fx:constant="HAND" />
                                        </cursor>
                                     </Button>
-                                    <ChoiceBox fx:id="roleInput" layoutX="86.0" layoutY="139.0" prefHeight="25.0" prefWidth="347.0">
+                                    <ChoiceBox fx:id="roleInput" layoutX="86.0" layoutY="139.0" prefHeight="25.0" prefWidth="133.0">
                                        <cursor>
                                           <Cursor fx:constant="HAND" />
                                        </cursor>
                                     </ChoiceBox>
-                                    <TextField fx:id="nameInput" layoutX="86.0" layoutY="23.0" prefHeight="25.0" prefWidth="348.0" />
+                                    <TextField fx:id="nameInput" layoutX="86.0" layoutY="23.0" prefHeight="25.0" prefWidth="130.0" />
                                     <Label fx:id="nameLbl" layoutX="9.0" layoutY="27.0" text="Name" textFill="WHITE">
                                        <font>
                                           <Font size="14.0" />
@@ -211,13 +211,41 @@
                                     </Label>
                                  </children>
                               </AnchorPane>
+                              <AnchorPane fx:id="employeeInputContainer" layoutX="244.0" layoutY="175.0" prefHeight="163.0" prefWidth="266.0">
+                                 <children>
+                                    <TextField fx:id="ageInput" layoutX="136.0" layoutY="9.0" prefHeight="25.0" prefWidth="133.0" />
+                                    <Label layoutX="75.0" layoutY="11.0" prefHeight="21.0" prefWidth="40.0" text="Age" textFill="WHITE">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="deptInput" layoutX="136.0" layoutY="48.0" prefHeight="25.0" prefWidth="133.0" />
+                                    <TextField fx:id="salaryInput" layoutX="136.0" layoutY="86.0" prefHeight="25.0" prefWidth="133.0" />
+                                    <TextField fx:id="shiftInput" layoutX="136.0" layoutY="125.0" prefHeight="25.0" prefWidth="133.0" />
+                                    <Label layoutX="75.0" layoutY="50.0" prefHeight="21.0" prefWidth="40.0" text="Dep't" textFill="WHITE">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="74.0" layoutY="88.0" prefHeight="21.0" prefWidth="43.0" text="Salary" textFill="WHITE">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="81.0" layoutY="129.0" prefHeight="21.0" prefWidth="36.0" text="Shift" textFill="#fffefe">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
                            </children>
                         </AnchorPane>
                      </children>
                   </Pane>
                </children>
             </HBox>
-            <TableView fx:id="contentTable" layoutX="153.0" layoutY="46.0" prefHeight="280.0" prefWidth="532.0">
+            <TableView fx:id="contentTable" layoutX="153.0" layoutY="46.0" prefHeight="255.0" prefWidth="559.0">
               <columns>
                 <TableColumn fx:id="columnID" prefWidth="115.33328247070312" text="ID" />
                 <TableColumn fx:id="columnName" prefWidth="109.3333740234375" text="Name" />
@@ -226,7 +254,7 @@
                   <TableColumn fx:id="columnRole" prefWidth="104.66668701171875" text="Role" />
               </columns>
             </TableView>
-            <TextArea fx:id="logsTextArea" layoutX="153.0" layoutY="46.0" prefHeight="299.0" prefWidth="535.0" />
+            <TextArea fx:id="logsTextArea" layoutX="153.0" layoutY="46.0" prefHeight="260.0" prefWidth="561.0" />
          </children>
          <padding>
             <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />

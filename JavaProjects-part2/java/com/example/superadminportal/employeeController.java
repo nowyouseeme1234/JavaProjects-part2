@@ -15,19 +15,19 @@ import java.sql.*;
 import java.util.ResourceBundle;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Random;
 
 public class employeeController implements Initializable, EventHandler<ActionEvent> {
     static String username;
+
+
     public static void setUserName(String x){
         username = x;
     }
 
     @FXML
-    private Button attendanceBtn;
+    private Button attendanceBtn, ordersBtn;
 
     @FXML
     private Button backBtn;
@@ -60,7 +60,7 @@ public class employeeController implements Initializable, EventHandler<ActionEve
     private Button salaryBtn;
 
     @FXML
-    private Button shitBtn;
+    private Button shitBtn,takeOrderBtn;
 
     @FXML
     private Button toContactBtn;
@@ -68,10 +68,7 @@ public class employeeController implements Initializable, EventHandler<ActionEve
     @FXML
     private Label zengLbl;
 
-//    static final String DB_DRIVER = "com.mysql.cj.jdbc.Driver";
-//    static final String DB_URL = "jdbc:mysql://localhost/ems";
-//    static final String DB_USER = "root";
-//    static final String DB_PASS = "";
+
 Connection con;
 
     {
@@ -93,16 +90,12 @@ Connection con;
         recruitmentBtn.setOnAction(this);
         logoutBtn.setOnAction(this);
         departmentBtn.setOnAction(this);
-
+        ordersBtn.setOnAction(this);
+        takeOrderBtn.setOnAction(this);
+        takeOrderBtn.setVisible(false);
     }
     @Override
     public void handle(ActionEvent actionEvent) {
-//        try {
-//            Class.forName(DB_DRIVER);
-//        } catch (ClassNotFoundException e) {
-//            throw new RuntimeException(e);
-//        }
-
 
         if(actionEvent.getSource().equals(logoutBtn)){
             try {
@@ -118,12 +111,11 @@ Connection con;
         }
 
         if(actionEvent.getSource().equals(recruitmentBtn)){
+            takeOrderBtn.setVisible(false);
             try {
 
                 String sql="select Entry_date,Age from employee_info where Username='"+username+"'";
                 String sql2= "select Name from `user` AS t2 join `account` as t1 where t1.Foreign_ID = t2.ID and t1.Username='"+username+"'";
-
-//                Connection con= DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
 
                 Statement sethi = con.createStatement();
                 ResultSet set_hi = sethi.executeQuery(sql2);
@@ -143,11 +135,10 @@ Connection con;
 
         }
         if(actionEvent.getSource().equals(salaryBtn)){
-
+            takeOrderBtn.setVisible(false);
 
             try {
                 String sql="select Salary from employee_info where Username='"+username+"'";
-//                Connection con = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
                 Statement stm= con.createStatement();
                 ResultSet res = stm.executeQuery(sql);
                 res.next();
@@ -162,7 +153,6 @@ Connection con;
         if(actionEvent.getSource().equals(revewBtn)){
             try {
                 String sql="select Review from employee_info where Username='"+username+"'";
-//                Connection con = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
                 Statement stm= con.createStatement();
                 ResultSet res = stm.executeQuery(sql);
                 res.next();
@@ -174,9 +164,9 @@ Connection con;
             }
     }
         if(actionEvent.getSource().equals(attendanceBtn)){
+            takeOrderBtn.setVisible(false);
             try {
                 String sql="select Attendance from employee_info where Username='"+username+"'";
-//                Connection con = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
                 Statement stm= con.createStatement();
                 ResultSet res = stm.executeQuery(sql);
                 res.next();
@@ -196,14 +186,14 @@ Connection con;
             }
         }
         if(actionEvent.getSource().equals(shitBtn)){
+            takeOrderBtn.setVisible(false);
             try {
                 String sql="select Shift from employee_info where Username='"+username+"'";
-//                Connection con = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
                 Statement stm= con.createStatement();
                 ResultSet res = stm.executeQuery(sql);
                 res.next();
                 String shift;
-                if(res.getString("Shift")=="night"){
+                if(res.getString("Shift").equals("night")){
                   shift="🕚"  ;
                 }
                 else{
@@ -217,9 +207,9 @@ Connection con;
             }
         }
         if(actionEvent.getSource().equals(departmentBtn)){
+            takeOrderBtn.setVisible(false);
             try {
                 String sql="select Department from employee_info where Username='"+username+"'";
-//                Connection con = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
                 Statement stm= con.createStatement();
                 ResultSet res = stm.executeQuery(sql);
                 res.next();
@@ -230,11 +220,45 @@ Connection con;
                 throw new RuntimeException(e);
             }
         }
+
         if(actionEvent.getSource().equals(toContactBtn)){
 
+                descriptionTxt.setText("If you need any additional information or complaints regarding  the company's service  we would welcome!!\n\n Email:- zengdelivery@gmail.com\n\n Phone number:- +251924468974\n\t\t\t+251945494048");
 
-                descriptionTxt.setText("If you need any additional information or complaints regarding  the company's service  we would welcome!!\n\n Email:- zengdelivery@gmail.com\n\n Phone number:- +251924468974\n\t\t\t\t+251945494048");
+        }
+        if(actionEvent.getSource().equals(ordersBtn)){
+            takeOrderBtn.setVisible(true);
+            if (!AssignEmployee.getOrder().equals("")){
+                if(AdminController.getadminEmpUsername().equals(superAdminPortal.getUserName())){
+                    descriptionTxt.setText(AssignEmployee.getOrder()+"\n"+"You are assigned for the task");
+                }
+                else
+                    descriptionTxt.setText(AssignEmployee.getOrder()+"\n"+"You are NOT assigned for the task");
+            }
+            else {
+                descriptionTxt.setText("No Current order is Submitted");
+            }
 
+        }
+        if(actionEvent.getSource().equals(takeOrderBtn)){
+            if (!AssignEmployee.getOrder().equals("")){
+                String query2 = "update employee_info set Status = 'Free' where Username = '"+superAdminPortal.getUserName()+ "'";
+                System.out.println(superAdminPortal.getUserName());
+                try {
+                    Statement stm = con.createStatement();
+                    int rs2 = stm.executeUpdate(query2);
+                    if (rs2 > 0){
+                        System.out.println("Status updated correctly");
+                        descriptionTxt.setText("");
+//                        AssignEmployee.setStatus("Assigned for the task");
+                    }
+                    else{
+                        System.out.println("Error updating the status");
+                    }
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+            }
 
         }
 
